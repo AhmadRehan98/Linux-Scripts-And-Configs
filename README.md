@@ -1,2 +1,1 @@
-My personal ubuntu install script to help save time on new installs
-run setup using `sh setup.sh`
+Just storing some personal stuff, mostly scripts, in case I lose my data
