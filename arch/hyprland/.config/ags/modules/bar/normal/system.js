@@ -165,7 +165,7 @@ const BatteryModule = () => Stack({
                 setup: (self) => self.poll(900000, async (self) => {
                     const WEATHER_CACHE_PATH = WEATHER_CACHE_FOLDER + '/wttr.in.txt';
                     const updateWeatherForCity = (city) => execAsync(`curl https://wttr.in/${city.replace(/ /g, '%20')}?format=j1`)
-                        .then(output => {
+                        .then(outputbarStatusIcons => {
                             const weather = JSON.parse(output);
                             Utils.writeFile(JSON.stringify(weather), WEATHER_CACHE_PATH)
                                 .catch(print);
@@ -193,7 +193,7 @@ const BatteryModule = () => Stack({
                             } catch (err) {
                                 print(err);
                             }
-                        });
+                        });barStatusIcons
                     if (userOptions.weather.city != '' && userOptions.weather.city != null) {
                         updateWeatherForCity(userOptions.weather.city.replace(/ /g, '%20'));
                     }
@@ -224,6 +224,14 @@ const switchToRelativeWorkspace = async (self, num) => {
     }
 }
 
+// const Hyprland = (await import('resource:///com/github/Aylur/ags/service/hyprland.js')).default;
+//
+// const Kbl = () => Label({
+//     connections: [[Hyprland, (label,kbName,layoutName) => {
+//         label.label = kbName? ( layoutName ) : 'English (US)';
+//     }, 'keyboard-layout']],
+// });
+
 export default () => Widget.EventBox({
     onScrollUp: (self) => switchToRelativeWorkspace(self, -1),
     onScrollDown: (self) => switchToRelativeWorkspace(self, +1),
@@ -233,6 +241,7 @@ export default () => Widget.EventBox({
         children: [
             BarGroup({ child: BarClock() }),
             BatteryModule(),
+            // Kbl()
         ]
     })
 });

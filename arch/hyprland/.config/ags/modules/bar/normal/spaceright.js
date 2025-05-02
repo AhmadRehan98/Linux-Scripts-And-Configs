@@ -1,5 +1,6 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+const { Label } = Widget;
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
@@ -31,6 +32,7 @@ const SeparatorDot = () => Widget.Revealer({
         .hook(SystemTray, (self) => self.attribute.update(self, -1), 'removed')
     ,
 });
+
 
 export default (monitor = 0) => {
     const barTray = Tray();

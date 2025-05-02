@@ -18,12 +18,15 @@
     "sidebar": {
         "pages": {
             "apis": {
-                "defaultPage": "gemini"
+                "defaultPage": "booru"
             },
             "defaultPage": "apis"
         },
         "calendar": {
             "expandByDefault": true
+        },
+        "image": {
+            "allowNsfw": true
         }
     }
 }

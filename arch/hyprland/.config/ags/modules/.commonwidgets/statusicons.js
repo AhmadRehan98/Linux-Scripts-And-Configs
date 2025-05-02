@@ -2,7 +2,7 @@ import App from 'resource:///com/github/Aylur/ags/app.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
-
+const { Label } = Widget;
 import { MaterialIcon } from './materialicon.js';
 import Bluetooth from 'resource:///com/github/Aylur/ags/service/bluetooth.js';
 import Network from 'resource:///com/github/Aylur/ags/service/network.js';
@@ -298,13 +298,23 @@ const createKeyboardLayoutInstances = async () => {
 };
 const optionalKeyboardLayoutInstances = await createKeyboardLayoutInstances()
 
+const Hyprland = (await import('resource:///com/github/Aylur/ags/service/hyprland.js')).default;
+const Kbl = () => Label({
+    connections: [[Hyprland, (label,kbName,layoutName) => {
+        label.label = kbName? ( layoutName ) : 'English (US)';
+    }, 'keyboard-layout']],
+});
+
+
 export const StatusIcons = (props = {}, monitor = 0) => Widget.Box({
     ...props,
     child: Widget.Box({
         className: 'spacing-h-15',
         children: [
             MicMuteIndicator(),
-            optionalKeyboardLayoutInstances[monitor],
+            // optionalKeyboardLayoutInstances[monitor],
+            // THIS WAS THE BROKEN us
+            Kbl(),
             NotificationIndicator(),
             NetworkIndicator(),
             Widget.Box({
