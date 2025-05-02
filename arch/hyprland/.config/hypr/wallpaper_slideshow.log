@@ -1,0 +1,226 @@
+[Fri May  2 11:04:58 AM EEST 2025] Starting wallpaper slideshow
+[Fri May  2 11:04:58 AM EEST 2025] Error: Wallpaper directory /home/ahmad/Pictures/Wallpapers does not exist
+[Fri May  2 11:16:12 AM EEST 2025] Starting wallpaper slideshow
+[Fri May  2 11:16:12 AM EEST 2025] Found 375 wallpapers
+[Fri May  2 11:16:12 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make
+ok
+no such file: /mnt/F/Pictures/Make
+wallpaper failed (no such file: /mnt/F/Pictures/Make)
+[Fri May  2 11:16:22 AM EEST 2025] Setting wallpaper: WallPapers
+ok
+no such file: WallPapers
+wallpaper failed (no such file: WallPapers)
+[Fri May  2 11:16:32 AM EEST 2025] Setting wallpaper: Great
+ok
+no such file: Great
+wallpaper failed (no such file: Great)
+[Fri May  2 11:16:42 AM EEST 2025] Setting wallpaper: Again/09
+ok
+no such file: Again/09
+wallpaper failed (no such file: Again/09)
+[Fri May  2 11:16:52 AM EEST 2025] Setting wallpaper: -
+ok
+usage: hyprctl [flags] <command> [args...|--help]
+
+commands:
+    activewindow        → Gets the active window name and its properties
+    activeworkspace     → Gets the active workspace and its properties
+    animations          → Gets the current config'd info about animations
+                          and beziers
+    binds               → Lists all registered binds
+    clients             → Lists all windows with their properties
+    configerrors        → Lists all current config parsing errors
+    cursorpos           → Gets the current cursor position in global layout
+                          coordinates
+    decorations <window_regex> → Lists all decorations and their info
+    devices             → Lists all connected keyboards and mice
+    dismissnotify [amount] → Dismisses all or up to AMOUNT notifications
+    dispatch <dispatcher> [args] → Issue a dispatch to call a keybind
+                          dispatcher with arguments
+    getoption <option>  → Gets the config option status (values)
+    globalshortcuts     → Lists all global shortcuts
+    hyprpaper ...       → Issue a hyprpaper request
+    hyprsunset ...      → Issue a hyprsunset request
+    instances           → Lists all running instances of Hyprland with
+                          their info
+    keyword <name> <value> → Issue a keyword to call a config keyword
+                          dynamically
+    kill                → Issue a kill to get into a kill mode, where you can
+                          kill an app by clicking on it. You can exit it
+                          with ESCAPE
+    layers              → Lists all the surface layers
+    layouts             → Lists all layouts available (including plugin'd ones)
+    monitors            → Lists active outputs with their properties,
+                          'monitors all' lists active and inactive outputs
+    notify ...          → Sends a notification using the built-in Hyprland
+                          notification system
+    output ...          → Allows you to add and remove fake outputs to your
+                          preferred backend
+    plugin ...          → Issue a plugin request
+    reload [config-only] → Issue a reload to force reload the config. Pass
+                          'config-only' to disable monitor reload
+    rollinglog          → Prints tail of the log. Also supports -f/--follow
+                          option
+    setcursor <theme> <size> → Sets the cursor theme and reloads the cursor
+                          manager
+    seterror <color> <message...> → Sets the hyprctl error string. Color has
+                          the same format as in colors in config. Will reset
+                          when Hyprland's config is reloaded
+    setprop ...         → Sets a window property
+    splash              → Get the current splash
+    switchxkblayout ... → Sets the xkb layout index for a keyboard
+    systeminfo          → Get system info
+    version             → Prints the hyprland version, meaning flags, commit
+                          and branch of build.
+    workspacerules      → Lists all workspace rules
+    workspaces          → Lists all workspaces with their properties
+
+flags:
+    -j                  → Output in JSON
+    -r                  → Refresh state after issuing command (e.g. for
+                          updating variables)
+    --batch             → Execute a batch of commands, separated by ';'
+    --instance (-i)     → use a specific instance. Can be either signature or
+                          index in hyprctl instances (0, 1, etc)
+    --quiet (-q)        → Disable the output of hyprctl
+
+--help:
+    Can be used to print command's arguments that did not fit into this page
+    (three dots)
+wallpaper failed (no such file: -)
+[Fri May  2 11:17:02 AM EEST 2025] Setting wallpaper: JYd982v.jpg
+ok
+no such file: JYd982v.jpg
+wallpaper failed (no such file: JYd982v.jpg)
+[Fri May  2 11:17:12 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make
+ok
+no such file: /mnt/F/Pictures/Make
+wallpaper failed (no such file: /mnt/F/Pictures/Make)
+[Fri May  2 11:17:22 AM EEST 2025] Setting wallpaper: WallPapers
+ok
+no such file: WallPapers
+wallpaper failed (no such file: WallPapers)
+[Fri May  2 11:17:32 AM EEST 2025] Setting wallpaper: Great
+ok
+no such file: Great
+wallpaper failed (no such file: Great)
+[Fri May  2 11:17:42 AM EEST 2025] Setting wallpaper: Again/11
+ok
+no such file: Again/11
+wallpaper failed (no such file: Again/11)
+[Fri May  2 11:17:52 AM EEST 2025] Setting wallpaper: -
+ok
+usage: hyprctl [flags] <command> [args...|--help]
+
+commands:
+    activewindow        → Gets the active window name and its properties
+    activeworkspace     → Gets the active workspace and its properties
+    animations          → Gets the current config'd info about animations
+                          and beziers
+    binds               → Lists all registered binds
+    clients             → Lists all windows with their properties
+    configerrors        → Lists all current config parsing errors
+    cursorpos           → Gets the current cursor position in global layout
+                          coordinates
+    decorations <window_regex> → Lists all decorations and their info
+    devices             → Lists all connected keyboards and mice
+    dismissnotify [amount] → Dismisses all or up to AMOUNT notifications
+    dispatch <dispatcher> [args] → Issue a dispatch to call a keybind
+                          dispatcher with arguments
+    getoption <option>  → Gets the config option status (values)
+    globalshortcuts     → Lists all global shortcuts
+    hyprpaper ...       → Issue a hyprpaper request
+    hyprsunset ...      → Issue a hyprsunset request
+    instances           → Lists all running instances of Hyprland with
+                          their info
+    keyword <name> <value> → Issue a keyword to call a config keyword
+                          dynamically
+    kill                → Issue a kill to get into a kill mode, where you can
+                          kill an app by clicking on it. You can exit it
+                          with ESCAPE
+    layers              → Lists all the surface layers
+    layouts             → Lists all layouts available (including plugin'd ones)
+    monitors            → Lists active outputs with their properties,
+                          'monitors all' lists active and inactive outputs
+    notify ...          → Sends a notification using the built-in Hyprland
+                          notification system
+    output ...          → Allows you to add and remove fake outputs to your
+                          preferred backend
+    plugin ...          → Issue a plugin request
+    reload [config-only] → Issue a reload to force reload the config. Pass
+                          'config-only' to disable monitor reload
+    rollinglog          → Prints tail of the log. Also supports -f/--follow
+                          option
+    setcursor <theme> <size> → Sets the cursor theme and reloads the cursor
+                          manager
+    seterror <color> <message...> → Sets the hyprctl error string. Color has
+                          the same format as in colors in config. Will reset
+                          when Hyprland's config is reloaded
+    setprop ...         → Sets a window property
+    splash              → Get the current splash
+    switchxkblayout ... → Sets the xkb layout index for a keyboard
+    systeminfo          → Get system info
+    version             → Prints the hyprland version, meaning flags, commit
+                          and branch of build.
+    workspacerules      → Lists all workspace rules
+    workspaces          → Lists all workspaces with their properties
+
+flags:
+    -j                  → Output in JSON
+    -r                  → Refresh state after issuing command (e.g. for
+                          updating variables)
+    --batch             → Execute a batch of commands, separated by ';'
+    --instance (-i)     → use a specific instance. Can be either signature or
+                          index in hyprctl instances (0, 1, etc)
+    --quiet (-q)        → Disable the output of hyprctl
+
+--help:
+    Can be used to print command's arguments that did not fit into this page
+    (three dots)
+wallpaper failed (no such file: -)
+[Fri May  2 11:18:02 AM EEST 2025] Setting wallpaper: eivNH5a.jpg
+ok
+no such file: eivNH5a.jpg
+wallpaper failed (no such file: eivNH5a.jpg)
+[Fri May  2 11:18:12 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make
+ok
+no such file: /mnt/F/Pictures/Make
+wallpaper failed (no such file: /mnt/F/Pictures/Make)
+[Fri May  2 11:18:22 AM EEST 2025] Setting wallpaper: WallPapers
+ok
+no such file: WallPapers
+wallpaper failed (no such file: WallPapers)
+[Fri May  2 11:18:33 AM EEST 2025] Starting wallpaper slideshow
+[Fri May  2 11:18:33 AM EEST 2025] Found 92 wallpapers
+[Fri May  2 11:18:33 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/09 - JYd982v.jpg
+ok
+ok
+ok
+[Fri May  2 11:18:43 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/11 - eivNH5a.jpg
+ok
+ok
+ok
+[Fri May  2 11:18:53 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/12095141143_f5b937fb95_o.jpg
+ok
+[Fri May  2 11:20:13 AM EEST 2025] Starting wallpaper slideshow
+[Fri May  2 11:20:13 AM EEST 2025] Found 92 wallpapers
+[Fri May  2 11:20:13 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/09 - JYd982v.jpg
+ok
+ok
+ok
+[Fri May  2 11:25:13 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/11 - eivNH5a.jpg
+ok
+ok
+ok
+[Fri May  2 11:30:13 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/12095141143_f5b937fb95_o.jpg
+ok
+ok
+ok
+[Fri May  2 11:35:13 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/1368369347768.jpg
+ok
+ok
+ok
+[Fri May  2 11:40:13 AM EEST 2025] Setting wallpaper: /mnt/F/Pictures/Make WallPapers Great Again/1467284074570.jpg
+ok
+ok
+ok
