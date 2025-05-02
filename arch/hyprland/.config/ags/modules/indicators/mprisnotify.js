@@ -1,24 +1,27 @@
 import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
-import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
+import Utils from 'resource:///com/github/Aylur/ags/utils.js';
 
-let lastTrackId = '';
+let lastId = null;
 
-Mpris.connect('player-changed', () => {
-    const player = Mpris.players[0];
-    if (!player) return;
+Mpris.connect('player-added', (_, busName) => {
+    const player = Mpris.getPlayer(busName);
+    // Listen for metadata changes
+    player.connect('notify::metadata', () => {
+        const { 'xesam:title': title, 'xesam:artist': artist, 'mpris:artUrl': artUrl } = player.metadata || {};
 
-    const { title, artist, album } = player.track;
-    const trackId = `${title}-${artist}-${album}`;
+        // Skip if no useful metadata
+        if (!title || !artist) return;
 
-    if (trackId === lastTrackId) return;
-    lastTrackId = trackId;
+        // Avoid duplicate notifications by checking last ID
+        const currentId = `${title}-${artist}`;
+        if (lastId === currentId) return;
+        lastId = currentId;
 
-    Notifications.add({
-        appName: player.identity || 'Now Playing',
-        summary: title || 'Unknown Title',
-        body: artist || '',
-        iconName: player.cover_path || 'media-playback-start-symbolic',
-        urgency: 'normal',
-        timeout: 5000,
+        // Convert file:// URLs to absolute paths if needed
+        let icon = artUrl;
+        if (artUrl?.startsWith('file://'))
+            icon = artUrl.replace('file://', '');
+
+        Utils.notify(`${artist.join(', ')}`, title, icon);
     });
 });

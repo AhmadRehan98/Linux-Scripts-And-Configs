@@ -25,6 +25,11 @@ import { COMPILED_STYLE_DIR } from './init.js';
 
 import './modules/indicators/mprisnotify.js';
 
+
+// Utils.notify('Title', 'Message body here', 'media-playback-start-symbolic');
+
+
+
 const range = (length, start = 1) => Array.from({ length }, (_, i) => i + start);
 function forMonitors(widget) {
     const n = Gdk.Display.get_default()?.get_n_monitors() || 1;
