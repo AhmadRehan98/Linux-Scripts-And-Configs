@@ -55,7 +55,7 @@
     },
     "bar": {
         // Whether to show Swap and CPU usage when there's media. RAM is always shown.
-        "alwaysShowFullResources": false, 
+        "alwaysShowFullResources": true,
         // Array of bar modes for each monitor. Hit Ctrl+Alt+Slash to cycle.
         // Modes: "normal", "focus" (workspace indicator only), "nothing"
         // Example for four monitors: ["normal", "focus", "normal", "nothing"]
@@ -178,15 +178,15 @@
         // See https://docs.gtk.org/glib/method.DateTime.format.html
         // Here's the 12h format: "%I:%M%P"
         // For seconds, add "%S" and set interval to 1000
-        "format": "%H:%M",
-        "interval": 5000,
+        "format": "%I:%M:%S%P",
+        "interval": 1000,
         "dateFormatLong": "%A, %d/%m", // On bar
         "dateInterval": 5000,
         "dateFormat": "%d/%m", // On notif time
         "calendarDateFormat": "%d %B %Y"
     },
     "weather": {
-        "city": "",
+        "city": "cairo",
         "preferredUnit": "C" // Either C or F
     },
     "workspaces": {
@@ -254,7 +254,7 @@
         // Format: "Modifier_1+...+Modifier_n+key". The key is CaSe SeNsItIvE!
         // Modifiers: Shift Ctrl Alt Hyper Meta
         // See https://docs.gtk.org/gdk3/index.html#constants for keys (listed as KEY_key)
-        // You can assign multiple keybinds for the same action. Just split them with a comma
+        // You can assign multiple keybinds for the same actionmprisnotify. Just split them with a comma
         // Example: "Ctrl+Page_Down, ctrl+Tab" 
         "overview": {
             "altMoveLeft": "Ctrl+B",

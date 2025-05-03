@@ -2,7 +2,8 @@ import App from 'resource:///com/github/Aylur/ags/app.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
-const { Label } = Widget;
+const { Label, Box, Button } = Widget;
+const { execAsync, exec } = Utils;
 import { MaterialIcon } from './materialicon.js';
 import Bluetooth from 'resource:///com/github/Aylur/ags/service/bluetooth.js';
 import Network from 'resource:///com/github/Aylur/ags/service/network.js';
@@ -305,12 +306,46 @@ const Kbl = () => Label({
     }, 'keyboard-layout']],
 });
 
+// const NetResource = (icon, command) => {
+//     const resourceLabel = Label({
+//         className: `txt-smaller txt-subtext`,
+//     });
+//     const widget = Button({
+//         child: Box({
+//             hpack: 'start',
+//             className: `spacing-h-4`,
+//             children: [
+//                 MaterialIcon(icon, 'very-small'),
+//                    resourceLabel,
+//             ],
+//             setup: (self) => self.poll(2000, () => execAsync(['bash', '-c', command])
+//             .then((output) => {
+//                 resourceLabel.label = output;
+//             }).catch(print))
+//             ,
+//         })
+//     });
+//     return widget;
+// }
+
+// const networkBandwidth = Box({
+//     vertical: true,
+//     hexpand: true,
+//     hpack: 'end',
+//     className: 'sidebar-wifinetworks-bandwidth',
+//     children: [
+//         NetResource('arrow_warm_up', `${App.configDir}/scripts/network_scripts/network_bandwidth.py sent`),
+//                              NetResource('arrow_cool_down', `${App.configDir}/scripts/network_scripts/network_bandwidth.py recv`),
+//     ]
+// });
+
 
 export const StatusIcons = (props = {}, monitor = 0) => Widget.Box({
     ...props,
     child: Widget.Box({
         className: 'spacing-h-15',
         children: [
+            // networkBandwidth,
             MicMuteIndicator(),
             // optionalKeyboardLayoutInstances[monitor],
             // THIS WAS THE BROKEN us

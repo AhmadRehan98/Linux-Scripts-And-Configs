@@ -1,7 +1,8 @@
 const { Gtk } = imports.gi;
+import App from 'resource:///com/github/Aylur/ags/app.js'
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
-
+import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import WindowTitle from "./normal/spaceleft.js";
 import Indicators from "./normal/spaceright.js";
 import Music from "./normal/music.js";
@@ -106,6 +107,45 @@ export const Bar = async (monitor = 0) => {
         }),
     });
 }
+
+// Function to create a bar for a specific monitor ID
+const createBar = (monitorId) => {
+    // Check if a bar already exists for this monitor
+    const exists = App.windows.some(wd => wd.name === `bar${monitorId}`);
+    if (!exists) {
+        console.log(`Creating bar for monitor ${monitorId}`);
+        App.addWindow(Bar(monitorId));
+    }
+};
+
+// Initialize bars for all current monitors
+// Hyprland.monitors.forEach(monitor => createBar(monitor.id));
+
+// Handle monitor-added events
+Hyprland.connect('monitor-added', (_, monitorName) => {
+    console.log(`Monitor added: ${monitorName}`);
+    // Find the monitor ID for the new monitor
+    const monitor = Hyprland.monitors.find(mt => mt.name === monitorName);
+    if (monitor) {
+        createBar(monitor.id);
+    } else {
+        console.error(`Monitor ${monitorName} not found in Hyprland.monitors`);
+    }
+});
+//
+// // Handle monitor-removed events (optional, to clean up)
+// Hyprland.connect('monitor-removed', (_, monitorName) => {
+//     console.log(`Monitor removed: ${monitorName}`);
+//     const monitor = Hyprland.monitors.find(mt => mt.name === monitorName);
+//     if (monitor) {
+//         const windowName = `bar${monitor.id}`;
+//         const window = App.getWindow(windowName);
+//         if (window) {
+//             console.log(`Closing bar for monitor ${monitor.id}`);
+//             App.removeWindow(window);
+//         }
+//     }
+// });
 
 export const BarCornerTopleft = (monitor = 0) => Widget.Window({
     monitor,

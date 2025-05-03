@@ -1,27 +1,26 @@
+import { notify } from 'resource:///com/github/Aylur/ags/utils.js';
 import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
 import Utils from 'resource:///com/github/Aylur/ags/utils.js';
 
+const activePlayers = new Set();
 let lastId = null;
+let currentMedia = null;
 
-Mpris.connect('player-added', (_, busName) => {
-    const player = Mpris.getPlayer(busName);
-    // Listen for metadata changes
-    player.connect('notify::metadata', () => {
-        const { 'xesam:title': title, 'xesam:artist': artist, 'mpris:artUrl': artUrl } = player.metadata || {};
+let lastTrackId = null;
 
-        // Skip if no useful metadata
-        if (!title || !artist) return;
+Mpris.connect('player-changed', (player) => {
+    if (!player) return;
 
-        // Avoid duplicate notifications by checking last ID
-        const currentId = `${title}-${artist}`;
-        if (lastId === currentId) return;
-        lastId = currentId;
+    const { 'xesam:title': title, 'xesam:artist': artist, 'mpris:artUrl': artUrl } = player.metadata || {};
+    const trackId = player.trackId || player.identity; // Use a unique identifier
 
-        // Convert file:// URLs to absolute paths if needed
-        let icon = artUrl;
-        if (artUrl?.startsWith('file://'))
-            icon = artUrl.replace('file://', '');
-
-        Utils.notify(`${artist.join(', ')}`, title, icon);
-    });
+    if (trackId && trackId !== lastTrackId) {
+        notify({
+            summary: `${artist?.join(', ') || 'Unknown Artist'} - ${title || 'Unknown Title'}`,
+               body: 'Now Playing',
+               icon: artUrl || 'media-playback-start',
+               appName: 'AGS Music'
+        });
+        lastTrackId = trackId;
+    }
 });
