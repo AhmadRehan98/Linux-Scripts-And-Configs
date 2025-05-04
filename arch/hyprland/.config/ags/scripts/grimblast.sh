@@ -8,7 +8,7 @@
 ##  - `wl-copy`: clipboard utility (provided by wl-clipboard)
 ##  - `jq`: json utility to parse hyprctl output
 ##  - `notify-send`: to show notifications (provided by libnotify)
-## Those are needed to be installed, if unsure, run `grimblast check`
+##  - `swappy`: to edit screenshots
 ##
 ## See `man 1 grimblast` or `grimblast usage` for further details.
 
@@ -17,6 +17,7 @@
 ## This tool is based on grimshot, with swaymsg commands replaced by their
 ## hyprctl equivalents.
 ## https://github.com/swaywm/sway/blob/master/contrib/grimshot
+
 getTargetDirectory() {
   test -f "${XDG_CONFIG_HOME:-$HOME/.config}/user-dirs.dirs" &&
     . "${XDG_CONFIG_HOME:-$HOME/.config}/user-dirs.dirs"
@@ -26,16 +27,6 @@ getTargetDirectory() {
 
 tmp_editor_directory() {
   echo "/tmp"
-}
-
-#Detect if $GRIMBLAST_EDITOR env exist
-env_editor_confirm() {
-  if [ -n "$GRIMBLAST_EDITOR" ]; then
-    echo "GRIMBLAST_EDITOR is set. Continuing..."
-  else
-    echo "GRIMBLAST_EDITOR is not set. Defaulting to gimp"
-    GRIMBLAST_EDITOR=gimp
-  fi
 }
 
 NOTIFY=no
@@ -101,7 +92,7 @@ if [ "$ACTION" != "save" ] && [ "$ACTION" != "copy" ] && [ "$ACTION" != "edit" ]
   echo "  copy: Copy the screenshot data into the clipboard."
   echo "  save: Save the screenshot to a regular file or '-' to pipe to STDOUT."
   echo "  copysave: Combine the previous 2 options."
-  echo "  edit: Open screenshot in the image editor of your choice (default is gimp). See man page for info."
+  echo "  edit: Open screenshot in swappy for editing."
   echo "  check: Verify if required tools are installed and exit."
   echo "  usage: Show this message and exit."
   echo ""
@@ -142,7 +133,7 @@ resetFade() {
 
 killHyprpicker() {
   if [ ! $HYPRPICKER_PID -eq -1 ]; then
-    kill $HYPRPICKER_PID
+    kill -9 $HYPRPICKER_PID
   fi
 }
 
@@ -175,6 +166,11 @@ takeScreenshot() {
     grim ${CURSOR:+-c} ${SCALE:+-s "$SCALE"} -g "$GEOM" "$FILE" || die "Unable to invoke grim"
     resetFade
   fi
+  # Kill hyprpicker after grim to unfreeze the screen, but only for area with freeze
+  if [ "$FREEZE" = "yes" ] && [ "$SUBJECT" = "area" ] && [ $HYPRPICKER_PID -ne -1 ]; then
+    killHyprpicker
+    sleep 0.1 # Brief delay to ensure unfreeze completes
+  fi
 }
 
 wait() {
@@ -192,6 +188,7 @@ if [ "$ACTION" = "check" ]; then
   check wl-copy
   check jq
   check notify-send
+  check swappy
   exit
 elif [ "$SUBJECT" = "active" ]; then
   wait
@@ -233,6 +230,7 @@ elif [ "$SUBJECT" = "area" ]; then
     resetFade
     exit 1
   fi
+
   WHAT="Area"
   wait
 elif [ "$SUBJECT" = "window" ]; then
@@ -254,12 +252,11 @@ elif [ "$ACTION" = "save" ]; then
     notifyError "Error taking screenshot with grim"
   fi
 elif [ "$ACTION" = "edit" ]; then
-  env_editor_confirm
   if takeScreenshot "$FILE_EDITOR" "$GEOM" "$OUTPUT"; then
     TITLE="Screenshot of $SUBJECT"
-    MESSAGE="Open screenshot in image editor"
+    MESSAGE="Opening screenshot in swappy"
     notifyOk "$TITLE" "$MESSAGE" -i "$FILE_EDITOR"
-    $GRIMBLAST_EDITOR "$FILE_EDITOR"
+    swappy -f "$FILE_EDITOR"
     echo "$FILE_EDITOR"
   else
     notifyError "Error taking screenshot"
@@ -273,5 +270,3 @@ else
     notifyError "Error taking screenshot with grim"
   fi
 fi
-
-killHyprpicker
