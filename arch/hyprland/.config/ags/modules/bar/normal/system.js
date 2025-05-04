@@ -77,20 +77,20 @@ const Utilities = () => Box({
     children: [
         UtilButton({
             name: getString('Screen snip'), icon: 'screenshot_region', onClicked: () => {
-                Utils.execAsync(`${App.configDir}/scripts/grimblast.sh copy area`)
+                Utils.execAsync(`${App.configDir}/scripts/grimblast.sh edit area`)
                     .catch(print)
             }
         }),
-        UtilButton({
-            name: getString('Color picker'), icon: 'colorize', onClicked: () => {
-                Utils.execAsync(['hyprpicker', '-a']).catch(print)
-            }
-        }),
-        UtilButton({
-            name: getString('Toggle on-screen keyboard'), icon: 'keyboard', onClicked: () => {
-                toggleWindowOnAllMonitors('osk');
-            }
-        }),
+        // UtilButton({
+        //     name: getString('Color picker'), icon: 'colorize', onClicked: () => {
+        //         Utils.execAsync(['hyprpicker', '-a']).catch(print)
+        //     }
+        // }),
+        // UtilButton({
+        //     name: getString('Toggle on-screen keyboard'), icon: 'keyboard', onClicked: () => {
+        //         toggleWindowOnAllMonitors('osk');
+        //     }
+        // }),
     ]
 })
 
@@ -366,6 +366,7 @@ export default () => Widget.EventBox({
         children: [
             BarGroup({ child: BarClock() }),
             BatteryModule(),
+            BarGroup({ child: Utilities() }),
         ]
     })
 });

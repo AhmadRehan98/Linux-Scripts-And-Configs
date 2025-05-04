@@ -186,7 +186,7 @@
         "calendarDateFormat": "%d %B %Y"
     },
     "weather": {
-        "city": "cairo",
+        "city": "",
         "preferredUnit": "C" // Either C or F
     },
     "workspaces": {
