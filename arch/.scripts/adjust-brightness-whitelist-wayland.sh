@@ -1,6 +1,6 @@
 #!/bin/bash
 # Whitelist of program name substrings
-WHITELIST=("vlc" "osu" "mpv" "The Last of Us" "Cyberpunk" "heroic" "FINAL FANTASY VII REBIRTH" "KingdomCome")
+WHITELIST=("vlc" "osu" "mpv" "The Last of Us" "Cyberpunk" "heroic" "FINAL FANTASY VII REBIRTH" "Kingdom Come: Deliverance II" "Cemu" "Clair Obscur: Expedition 33")
 
 while true; do
     PROGRAM_RUNNING_AND_FOCUSED=false

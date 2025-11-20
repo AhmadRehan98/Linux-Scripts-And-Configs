@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-USE_FLATPAK=1
+USE_FLATPAK=0
 OBS_PROCESS="obs"
 FLATPAK_OBS="com.obsproject.Studio"
 CLEAR_CONFIG=0
@@ -45,9 +45,9 @@ close_obs() {
         local PIDS
         PIDS=$(get_obs_pids)
         if [ -n "$PIDS" ]; then
-            echo "Graceful close failed. Force-closing OBS PIDs: $PIDS"
+            echo "wmctrl Graceful close failed. SIGTERMING OBS PIDs: $PIDS"
             for PID in $PIDS; do
-                kill -TERM "$PID" 2>/dev/null || true
+                kill -s 15 -TERM "$PID" 2>/dev/null || true
             done
         fi
     else
@@ -100,10 +100,12 @@ clear_obs_config
 # Start OBS with --disable-shutdown-check in a fully detached manner
 echo "Starting OBS in detached mode..."
 if [ "$USE_FLATPAK" -eq 1 ]; then
+    sleep 6
     nohup flatpak run "$FLATPAK_OBS" --startreplaybuffer --minimize-to-tray --disable-shutdown-check >/tmp/obs_start.log 2>&1 &
     disown
 else
-    nohup obs --disable-shutdown-check >/tmp/obs_start.log 2>&1 &
+    rm -rf /home/$USER/.config/obs-studio/.sentinel;
+    nohup obs --startreplaybuffer --minimize-to-tray --disable-shutdown-check >/tmp/obs_start.log 2>&1 &
     disown
 fi
 OBS_PID=$!
