@@ -23,5 +23,5 @@ do
 done
 
 
-# rm -rf /home/$USER/.config/obs-studio/.sentinel;
+# rm -rf /home/$USER/.config/obs-studio/.sentinel; # deleting this I think will keep asking you to repick your screen/apps using kde.
 nohup obs --startreplaybuffer --minimize-to-tray --disable-shutdown-check >/tmp/obs_start.log 2>&1 &
