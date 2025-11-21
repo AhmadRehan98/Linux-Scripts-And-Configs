@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Path to your OBS script
-OBS_SCRIPT="$HOME/.scripts/restart-obs-websocket.sh"
+OBS_SCRIPT="$HOME/.scripts/restart-obs.sh"
 
 # Log file for debugging
 LOG_FILE="$HOME/.scripts/screen_lock_trigger.log"
-LOG_TO_FILE=0
+
+
 
 # File to store the last execution timestamp
 LAST_EXEC_TIMESTAMP="$HOME/.scripts/last_obs_exec_timestamp"
@@ -13,27 +14,23 @@ LAST_EXEC_TIMESTAMP="$HOME/.scripts/last_obs_exec_timestamp"
 # Grace period in seconds (1 minute)
 GRACE_PERIOD=60
 
-if [ "$LOG_TO_FILE" -eq 1 ]; then
-    nohup bash "$OBS_SCRIPT" >> "$LOG_FILE" 2>&1 &
-else
-    bash "$OBS_SCRIPT"
-fi
+nohup bash "$OBS_SCRIPT" >> "$LOG_FILE" 2>&1 &
 
 # Ensure the OBS script is executable
 chmod +x "$OBS_SCRIPT"
 
 # Empty old logs
-if [ "$LOG_TO_FILE" -eq 1 ]; then
-    truncate -s 0 "$LOG_FILE"
-fi
+truncate -s 0 "$LOG_FILE"
 
 # Function to log messages
 log_message() {
-    if [ "$LOG_TO_FILE" -eq 1 ]; then
-        echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
-    else
-        echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
-    fi
+
+
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+
+
+
+
 }
 
 # Check if dbus-monitor is available
@@ -65,20 +62,16 @@ dbus-monitor --session "type='signal',interface='org.freedesktop.ScreenSaver'" |
             if [ "$TIME_DIFF" -ge "$GRACE_PERIOD" ]; then
                 log_message "Screen unlocked detected. Running OBS script in detached mode..."
                 # Run the OBS script in a fully detached manner
-                if [ "$LOG_TO_FILE" -eq 1 ]; then
-                    nohup bash "$OBS_SCRIPT" >> "$LOG_FILE" 2>&1 &
-                else
-                    bash "$OBS_SCRIPT"
-                fi
+                nohup bash "$OBS_SCRIPT" >> "$LOG_FILE" 2>&1 &
                 # Disown the process to ensure it's independent of this script
                 disown
                 log_message "OBS script executed (detached)."
 
                 # Update the last execution timestamp
-                if [ "$LOG_TO_FILE" -eq 1 ]; then
+
                     echo "$CURRENT_TIME" > "$LAST_EXEC_TIMESTAMP"
-                fi
-                LAST_TIME=$CURRENT_TIME
+
+
             else
                 log_message "Screen unlocked detected, but within grace period ($TIME_DIFF seconds since last execution). Skipping OBS script."
             fi

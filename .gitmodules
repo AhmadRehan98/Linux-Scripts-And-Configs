@@ -1,0 +1,3 @@
+[submodule "arch/.scripts/shutdown-plugin"]
+	path = arch/.scripts/shutdown-plugin
+	url = https://github.com/noris-plugins-for-obs/shutdown-plugin.git
