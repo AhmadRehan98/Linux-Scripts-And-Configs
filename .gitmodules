@@ -1,0 +1,3 @@
+[submodule "mpv"]
+	path = arch/.scripts/configs/mpv
+	url = https://github.com/AhmadRehan98/mpv-config.git
