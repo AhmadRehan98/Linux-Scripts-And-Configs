@@ -8,7 +8,7 @@ import websocket
 LOG = logging.getLogger(__name__)
 
 host = "localhost"
-port = 4455 #or whatever port you use
+port = 4455
 password = "LooIYVDWGq912TpH"
 id = 1
 
@@ -17,7 +17,7 @@ try:
     url = "ws://{}:{}".format(host, port)
     ws.connect(url)
 except:
-    print("obs not running")
+    # print("obs not running")
     exit()
 
 def _build_auth_string(salt, challenge):
@@ -33,9 +33,7 @@ def _build_auth_string(salt, challenge):
     ).decode('utf-8')
     return auth
 
-
-
-def _auth():
+def auth():
     message = ws.recv()
     result = json.loads(message)
     server_version = result['d'].get('obsWebSocketVersion')
@@ -54,18 +52,14 @@ def _auth():
     # Message Identified...or so we assume...probably good to check if this is empty or not.
     result = json.loads(message)
 
-_auth()
+def send_payload(payload):
+    ws.send(json.dumps(payload))
+    message=ws.recv()
+    # print(message)
 
-payload =  {"op":6,"d":{"requestType":"StopReplayBuffer","requestId":"StopReplayBuffer"}}
-ws.send(json.dumps(payload))
-message=ws.recv()
-print(message)
+auth()
 
-
-payload =  {"op":6,"d":{"requestType":"CallVendorRequest","requestId":"kde-obs-shutdown","requestData":{"vendorName":"AdvancedSceneSwitcher","requestType":"AdvancedSceneSwitcherMessage","requestData":{"message":"kde-obs-shutdown"}}}}
-ws.send(json.dumps(payload))
-message=ws.recv()
-print(message)
+send_payload({"op":6,"d":{"requestType":"StopReplayBuffer","requestId":"StopReplayBuffer"}})
+send_payload({"op":6,"d":{"requestType":"CallVendorRequest","requestId":"kde-obs-shutdown","requestData":{"vendorName":"AdvancedSceneSwitcher","requestType":"AdvancedSceneSwitcherMessage","requestData":{"message":"kde-obs-shutdown"}}}})
 
 ws.close()
-
