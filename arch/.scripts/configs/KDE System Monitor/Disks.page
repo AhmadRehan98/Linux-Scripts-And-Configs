@@ -1,0 +1,110 @@
+[Face-106039733171392][Appearance]
+chartFace=org.kde.ksysguard.linechart
+title=Kingston SSD
+
+[Face-106039733171392][SensorColors]
+disk/01db61215a1f5720/read=0,255,0
+disk/01db61215a1f5720/write=0,0,255
+disk/nvme0n1/read=0,255,0
+disk/nvme1n1/write=0,0,255
+
+[Face-106039733171392][SensorLabels]
+disk/01db61215a1f5720/read=Read Rate
+disk/01db61215a1f5720/write=Write Rate
+disk/nvme0n1/read=Read Rate
+disk/nvme1n1/write=Write Rate
+
+[Face-106039733171392][Sensors]
+highPrioritySensorIds=["disk/nvme0n1/read","disk/nvme1n1/write"]
+
+[Face-106039733171392][org.kde.ksysguard.linechart][General]
+historyAmount=300
+
+[Face-106039737622176][Appearance]
+chartFace=org.kde.ksysguard.linechart
+title=Adata SSD
+
+[Face-106039737622176][SensorColors]
+disk/nvme1n1/read=124,239,49
+disk/nvme1n1/write=0,0,255
+
+[Face-106039737622176][SensorLabels]
+disk/nvme1n1/read=Read Rate
+disk/nvme1n1/write=Write Rate
+
+[Face-106039737622176][Sensors]
+highPrioritySensorIds=["disk/nvme1n1/read","disk/nvme1n1/write"]
+
+[Face-106039737622176][org.kde.ksysguard.linechart][General]
+historyAmount=300
+
+[Face-106039747525040][Appearance]
+chartFace=org.kde.ksysguard.linechart
+title=Seagate HDD
+
+[Face-106039747525040][SensorColors]
+disk/sda/read=49,239,52
+disk/sda/write=0,0,255
+
+[Face-106039747525040][SensorLabels]
+disk/sda/read=Read Rate
+disk/sda/write=Write Rate
+
+[Face-106039747525040][Sensors]
+highPrioritySensorIds=["disk/sda/read","disk/sda/write"]
+
+[Face-106039747525040][org.kde.ksysguard.linechart][General]
+historyAmount=300
+
+[page]
+Title=Disks
+actionsFace=
+icon=drive-harddisk-ieee1394-symbolic
+loadType=onstart
+margin=2
+version=1
+
+[page][row-0]
+heightMode=balanced
+isTitle=false
+name=row-0
+
+[page][row-0][column-0]
+name=column-0
+noMargins=
+showBackground=true
+
+[page][row-0][column-0][section-0]
+face=Face-106039733171392
+isSeparator=false
+name=section-0
+
+[page][row-1]
+heightMode=balanced
+isTitle=false
+name=row-1
+
+[page][row-1][column-0]
+name=column-0
+noMargins=
+showBackground=true
+
+[page][row-1][column-0][section-0]
+face=Face-106039737622176
+isSeparator=false
+name=section-0
+
+[page][row-2]
+heightMode=balanced
+isTitle=false
+name=row-2
+
+[page][row-2][column-0]
+name=column-0
+noMargins=
+showBackground=true
+
+[page][row-2][column-0][section-0]
+face=Face-106039747525040
+isSeparator=false
+name=section-0
