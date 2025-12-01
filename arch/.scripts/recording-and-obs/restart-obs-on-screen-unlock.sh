@@ -6,7 +6,8 @@ chmod +x "$OBS_SCRIPT"
 log_message() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
 }
-
+log_message "Run obs manually for the first time on fresh boot"
+bash "$OBS_SCRIPT"
 log_message "Starting kscreen-console to listen for screen disconnect/reconnect..."
 LAST_TIME=0
 LAST_LOG_TIME=0

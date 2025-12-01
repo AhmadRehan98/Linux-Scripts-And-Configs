@@ -48,6 +48,7 @@ Title=System
 chartFace=org.kde.ksysguard.textonly
 
 [Face-94410278989264][SensorColors]
+os/kernel/prettyName=115,115,115
 os/plasma/kfVersion=167,239,49
 os/plasma/plasmaVersion=239,83,49
 os/plasma/qtVersion=49,239,159
@@ -55,7 +56,7 @@ os/system/hostname=49,91,239
 os/system/prettyName=235,49,239
 
 [Face-94410278989264][Sensors]
-highPrioritySensorIds=["os/system/hostname","os/system/prettyName","os/plasma/plasmaVersion","os/plasma/kfVersion","os/plasma/qtVersion"]
+highPrioritySensorIds=["os/system/hostname","os/system/prettyName","os/plasma/plasmaVersion","os/plasma/kfVersion","os/plasma/qtVersion","os/kernel/prettyName"]
 
 [Face-94410280144624][Appearance]
 Title=Network Rates
@@ -113,7 +114,7 @@ totalSensors=["gpu/gpu1/usage"]
 historyAmount=300
 
 [page]
-Title=Overview (Custom)
+Title=Overview
 actionsFace=
 icon=speedometer
 loadType=ondemand
