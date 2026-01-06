@@ -1,5 +1,7 @@
 #!/bin/bash
-OBS_SCRIPT="./restart-obs-websocket.sh"
+sleep 10
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OBS_SCRIPT="$SCRIPT_DIR/restart-obs-websocket.sh"
 GRACE_PERIOD=30
 chmod +x "$OBS_SCRIPT"
 
